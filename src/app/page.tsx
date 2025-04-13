@@ -90,13 +90,13 @@ export default function Home() {
           <div className="flex justify-center">
             <div className="grid gap-2 justify-center items-center grid-cols-3 w-215">
               {products.map((product) => (
-                <div key={product.id} className="flex items-center bg-emerald-50 rounded-lg w-70 h-45">
+                <div key={product.id} className="flex items-center bg-gray-200 rounded-lg w-70 h-45">
                   <Image src={product.imageURL} width={100} height={100} alt="" />
                   <div className="grid gap-2">
-                    <p className="font-bold text-green-700">{product.name}</p>
+                    <p className=" flex justify-center font-bold text-gray-700 bg-gray-100 rounded-md">{product.name}</p>
                     <p className="flex gap-1 items-center">
                       {product.description}
-                      <span className="rounded-lg w-12 h-10 flex items-center justify-center bg-amber-50">
+                      <span className="rounded-lg w-12 h-10 flex items-center justify-center bg-green-100">
                         5.0 <Star size={15} weight="fill" />
                       </span>
                     </p>
@@ -116,7 +116,7 @@ export default function Home() {
                     </div>
                     <div className="flex gap-1 items-center">
                       <span className="font-bold text-emerald-950">R${product.price.toFixed(2)}</span>
-                      <button onClick={() => AddToCart(product, product.quantity)} className="bg-black text-blue-50 rounded-lg w-25 h-8 cursor-pointer">
+                      <button onClick={() => AddToCart(product, product.quantity)} className="bg-white text-gray-600 font-bold rounded-lg w-25 h-8 cursor-pointer">
                         Add to Cart
                       </button>
                     </div>
