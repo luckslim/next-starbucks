@@ -3,7 +3,7 @@ import Image from "next/image";
 import logo from "../../assets/logo.svg";
 import Google from "../../assets/google.png";
 import bghome from "../../assets/bghome.png";
-import classic from "../../assets/products/Classic.png";
+import classic from "../../assets/products/classic.svg";
 import icechocolate from "../../assets/products/iceChocolate.svg";
 import icematcha from "../../assets/products/icedMatcha.svg";
 import icetea from "../../assets/products/iceTea.svg";
@@ -25,11 +25,11 @@ export interface Products {
   quantity: number;
 }
 const initialProduct: Products[] = [
-  {idStripe:"price_1RBhP6QEoaQM13Lua5sOfWKR", id: 1, name: "Café Tradicional", description: "Good Coffee", quantity: 1, price: 10.80, imageURL: classic },
-  {idStripe:"price_1RBhNLQEoaQM13LuAFQrb07U", id: 2, name: "ice Chocolate", description: "Good Coffee", quantity: 1, price: 12.40, imageURL: icechocolate },
-  {idStripe:"price_1RCiChQEoaQM13Luy0ZmHkDB", id: 3, name: "ice Matcha", description: "Good Coffee", quantity: 1, price: 13.50, imageURL: icematcha },
-  {idStripe:"price_1RBgs1QEoaQM13LuJYNWOqzn", id: 4, name: "ice Tea", description: "Good Coffee", quantity: 1, price: 7.40, imageURL: icetea },
-  {idStripe:"price_1RBhPuQEoaQM13LunMurG3pe", id: 5, name: "ice Ship", description: "Good Coffee", quantity: 1, price: 10.50, imageURL: iceship },
+  {idStripe:"price_1RERy1G72GgZdpEW9SM2v96F", id: 1, name: "Café Tradicional", description: "Good Coffee", quantity: 1, price: 10.80, imageURL: classic },
+  {idStripe:"price_1RERzBG72GgZdpEWbFRUhYNW", id: 2, name: "ice Chocolate", description: "Good Coffee", quantity: 1, price: 12.40, imageURL: icechocolate },
+  {idStripe:"price_1RES0YG72GgZdpEWFqqiHo9Q", id: 3, name: "ice Matcha", description: "Good Coffee", quantity: 1, price: 13.50, imageURL: icematcha },
+  {idStripe:"price_1RES1dG72GgZdpEWJb38j4z9", id: 4, name: "ice Tea", description: "Good Coffee", quantity: 1, price: 7.40, imageURL: icetea },
+  {idStripe:"price_1RES29G72GgZdpEWvbaZyKWO", id: 5, name: "ice Ship", description: "Good Coffee", quantity: 1, price: 10.50, imageURL: iceship },
 ];
 export default function Home() {
   const [products, setProducts] = useState<Products[]>(initialProduct);
