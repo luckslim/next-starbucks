@@ -104,13 +104,7 @@ export default function Home() {
                       <span className="font-bold text-emerald-950">QTD:</span>
                       <nav className="flex gap-1">
                         <button onClick={() => handleDecrease(product.id)} className="bg-green-200 w-10 rounded-lg text-green-700 font-bold text-2xl cursor-pointer">-</button>
-                        <input
-                          type="number"
-                          value={product.quantity}
-                          readOnly
-                          min={1}
-                          className="border-0 rounded-lg text-center bg-gray-100 text-green-600 w-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                        />
+                        <span className="flex items-center justify-center font-bold border-0 rounded-lg text-center bg-gray-100 text-green-600 w-10">{product.quantity}</span>
                         <button onClick={() => handleIncrease(product.id)} className="bg-green-200 w-10 rounded-lg text-green-700 font-bold text-2xl cursor-pointer">+</button>
                       </nav>
                     </div>
