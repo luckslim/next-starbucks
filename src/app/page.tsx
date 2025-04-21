@@ -10,7 +10,7 @@ import icetea from "../../assets/products/iceTea.svg";
 import iceship from "../../assets/products/IcedShip.svg";
 import { toast, ToastContainer } from "react-toastify";
 import { ReactNode, useState, createContext } from "react";
-import { Star, Basket } from "@phosphor-icons/react/dist/ssr";
+import { Star, Basket, List } from "@phosphor-icons/react/dist/ssr";
 import { useCart } from "./context/context";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -38,6 +38,9 @@ export default function Home() {
   const session = useSession();
   function handleClick() {
     router.push('/cart');
+  }
+  function handleClickList(){
+    router.push('/order-list')
   }
   function handleLogout(){
     signOut({
@@ -71,7 +74,10 @@ export default function Home() {
                 <img className="w-8 rounded-xl " src={session.data.user?.image ?? ""} alt="" /> {session.data.user?.name}
               </button>
               <a onClick={handleClick} className="flex justify-center items-center gap-1 bg-gray-100 text-gray-500 h-10 w-10 cursor-pointer rounded-lg">
-                <Basket size={27} className="text-blue-600" weight="fill" />
+                <Basket size={27} className="text-black" weight="fill" />
+              </a>
+              <a onClick={handleClickList} className="flex justify-center items-center gap-1 bg-gray-100 text-gray-500 h-10 w-10 cursor-pointer rounded-lg">
+              <List size={27} className="text-black" />
               </a>
             </div>
           </div>

@@ -1,3 +1,4 @@
+
 import { redirect } from 'next/navigation'
 import { stripe } from '../lib/stripe'
 
@@ -19,21 +20,24 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   const lineItems = await stripe.checkout.sessions.listLineItems(sessionId)
 
   return (
-    <div className='grid justify-center'>
-      <h1>Compra realizada com sucesso!</h1>
-      <p>Nome: {session.customer_details?.name}</p>
-      <p>Email: {session.customer_details?.email}</p>
-
-      <h2 className="mt-4 text-lg font-bold">Produtos:</h2>
-      <ul className="mt-2 space-y-2">
-        {lineItems.data.map((item) => (
-          <li key={item.id} className="border p-2 rounded-md">
-            <p className="font-semibold">{item.description}</p>
-            <p>Quantidade: {item.quantity}</p>
-            <p>Preço: R${(item.amount_total! / 100).toFixed(2)}</p>
-          </li>
+    <>
+      <div className='grid gap-3 justify-center'>
+      <h1 className="flex items-center justify-center bg-green-100 text-green-950 h-10 w-70 rounded-lg">Compra realizada com sucesso!</h1>
+      <div className="grid items-center justify-around gap-3 bg-yellow-50 text-yellow-700 rounded-lg">
+        <div>
+          <p>Cliente: {session.customer_details?.name}</p>
+          <p>Email: {session.customer_details?.email}</p>
+        </div>
+        {lineItems.data.map((item)=>(
+        <div key={item.id} className="flex gap-1 justify-around border-dashed border-b-1">
+          <p>{item.description}</p>
+          <p>R${(item.amount_total! /100).toFixed(2)}</p>
+          <p>x {item.quantity}</p>
+        </div>
         ))}
-      </ul>
+      </div>
     </div>
+    </>
+
   )
 }

@@ -6,6 +6,7 @@ import { useCart } from "../context/context";
 import { House } from "phosphor-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Basket } from "@phosphor-icons/react/dist/ssr";
 export default function Cart() {
   const { cart, removeFromCart, calculateTotal } = useCart();
   const router = useRouter()
@@ -35,7 +36,7 @@ export default function Cart() {
     }
   }
   return (
-    <>
+    <div className="flex flex-col gap-20">
       <div className="flex justify-around items-center">
         <Image src={logo} width={100} height={100} alt="" />
         <div className="flex gap-1">
@@ -43,18 +44,13 @@ export default function Cart() {
             className="flex justify-around items-center gap-1 bg-black text-gray-50 h-10 w-50 cursor-pointer rounded-lg"
             type="submit"
           >
-            <img
-              className="w-8 rounded-xl "
-              src={session.data?.user?.image ?? ""}
-              alt=""
-            />{" "}
-            {session.data?.user?.name}
+            Market Cart<Basket className="text-white" size={27} />
           </button>
           <a
             onClick={handleClick}
             className="flex justify-center items-center gap-1 bg-gray-100 text-gray-500 h-10 w-10 cursor-pointer rounded-lg"
           >
-            <House size={27} className="text-blue-600" weight="fill" />
+            <House size={27} className="text-black" weight="fill" />
           </a>
         </div>
       </div>
@@ -111,6 +107,6 @@ export default function Cart() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
