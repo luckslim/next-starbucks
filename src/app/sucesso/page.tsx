@@ -14,12 +14,18 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
     expand: ["line_items", "customer_details"],
   });
   const lineItems = await stripe.checkout.sessions.listLineItems(sessionId);
-
+  const formattedProducts = lineItems.data.map((item) => ({
+    description: item.description ?? "Produto sem descrição",
+    quantity: item.quantity ?? 0,
+    amount_total: item.amount_total ?? 0,
+  }));
+  
   return (
     <>
       <SuccessOrder
         name={session.customer_details?.name || "Cliente desconhecido"}
         email={session.customer_details?.email || "Email não informado"}
+        products = {formattedProducts}
       />
       <div className="grid gap-3 justify-center">
         <h1 className="flex items-center justify-center bg-green-100 text-green-950 h-10 w-70 rounded-lg">
