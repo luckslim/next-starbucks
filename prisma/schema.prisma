@@ -13,5 +13,7 @@ model Orders {
    id    String  @id @default(auto()) @map("_id") @db.ObjectId 
    name String 
    email String 
+   products Json
+   total Int
    createdAt DateTime @default(now())
 }

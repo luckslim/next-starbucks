@@ -23,7 +23,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   return (
     <>
       <SuccessOrder
-        name={session.customer_details?.name || "Cliente desconhecido"}
+        name={session.customer_details?.name || "nome não informado"}
         email={session.customer_details?.email || "Email não informado"}
         products = {formattedProducts}
       />

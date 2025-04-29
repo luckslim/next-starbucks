@@ -14,11 +14,12 @@ interface OrderData {
 export async function POST(req: NextRequest) {
   const prisma = new  PrismaClient()
   const data = (await req.json()) as OrderData
-  const {username,email}= data
+  const {username, email, product, total}= data
   const order = await prisma.orders.create({
     data:{
       name: username,
-      email: email
+      email: email,
+      
     }
   })
   return NextResponse.json({
