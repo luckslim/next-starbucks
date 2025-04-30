@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 interface Product{
   description:string
@@ -15,21 +15,21 @@ export async function POST(req: NextRequest) {
   const prisma = new  PrismaClient()
   const data = (await req.json()) as OrderData
   const {username, email, product, total}= data
-  const order = await prisma.orders.create({
-    data:{
-      name: username,
-      email: email,
-      
-    }
-  })
+  const formattedProducts= product.map(p=>({
+    name: p.description,
+    quantity: p.quantity,
+    total: p.total
+  }))
+  // const order = await prisma.orders.create({
+  //   data:{
+  //     name: username,
+  //     email: email, 
+  //     products: formattedProducts as Prisma.InputJsonValue,
+  //     total: total 
+  //   }
+  // })
   return NextResponse.json({
     message: 'Ordem recebida com sucesso!',
-    // data:{
-    //   username,
-    //   email,
-    //   product,
-    //   total
-    // },
-    order
+    // order
   })
 }

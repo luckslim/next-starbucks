@@ -36,7 +36,7 @@ export default function SuccessOrder({ email, name, products }: Props) {
         await api.post("/orders", {
           username: nameNew,
           email: emailNew,
-          products: formattedProducts,
+          product: formattedProducts,
           total: totalAmount,
         });
       } catch (err) {
