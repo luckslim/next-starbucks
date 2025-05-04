@@ -14,7 +14,7 @@ model Orders {
    name String 
    email String 
    products Json
-   total Int
+   total String
    createdAt DateTime @default(now())
 }
 

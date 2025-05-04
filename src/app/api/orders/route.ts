@@ -9,7 +9,7 @@ interface OrderData {
   username:string
   email:string
   product: Product[]
-  total: number
+  total: string
 }
 export async function POST(req: NextRequest) {
   const prisma = new  PrismaClient()
@@ -20,16 +20,16 @@ export async function POST(req: NextRequest) {
     quantity: p.quantity,
     total: p.total
   }))
-  // const order = await prisma.orders.create({
-  //   data:{
-  //     name: username,
-  //     email: email, 
-  //     products: formattedProducts as Prisma.InputJsonValue,
-  //     total: total 
-  //   }
-  // })
+  const order = await prisma.orders.create({
+    data:{
+      name: username,
+      email: email, 
+      products: formattedProducts as Prisma.InputJsonValue,
+      total: total, 
+    }
+  })
   return NextResponse.json({
     message: 'Ordem recebida com sucesso!',
-    // order
+    order
   })
 }

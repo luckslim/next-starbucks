@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { api } from "../lib/axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 interface Product {
   description: string;
   quantity: number;
@@ -14,6 +15,7 @@ interface Props {
 }
 export default function SuccessOrder({ email, name, products }: Props) {
   const { data: session, status } = useSession();
+  const router = useRouter()
   useEffect(() => {
     async function registerOrder() {
       try {
@@ -22,10 +24,14 @@ export default function SuccessOrder({ email, name, products }: Props) {
           quantity: product.quantity,
           total: product.amount_total / 100,
         }));
-        const totalAmount =
-          products.reduce((acc, product) => {
-            return acc + product.amount_total;
-          }, 0) / 100;
+        // const totalAmount =
+        //   products.reduce((acc, product) => {
+        //     return acc + product.amount_total;
+        //   }, 0) / 100;
+        const totalAmount = (
+          products.reduce((acc, product) => acc + product.amount_total, 0) / 100
+        ).toFixed(2);
+        console.log(totalAmount)
         const nameNew = session?.user?.name
         const emailNew = session?.user?.email
 
@@ -45,6 +51,9 @@ export default function SuccessOrder({ email, name, products }: Props) {
     }
 
     registerOrder();
+    setTimeout(()=>{
+      router.push('/order-list')
+    },2000)
   }, [name, email, status, products]);
   return null
 }

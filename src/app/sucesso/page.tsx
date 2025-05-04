@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { stripe } from "../lib/stripe";
+import logo from "../../../assets/logo.svg"
 import SuccessOrder from "../success-orders/page";
+import Image from "next/image";
 interface SuccessPageProps {
   searchParams: { session_id?: string };
 }
@@ -19,7 +21,6 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
     quantity: item.quantity ?? 0,
     amount_total: item.amount_total ?? 0,
   }));
-  
   return (
     <>
       <SuccessOrder
@@ -27,26 +28,12 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
         email={session.customer_details?.email || "Email não informado"}
         products = {formattedProducts}
       />
-      <div className="grid gap-3 justify-center">
+      <div className="flex flex-col gap-10 justify-center items-center">
+        <Image src={logo} width={400} height={400} alt="logo"/>
         <h1 className="flex items-center justify-center bg-green-100 text-green-950 h-10 w-70 rounded-lg">
           Compra realizada com sucesso!
         </h1>
-        <div className="grid items-center justify-around gap-3 bg-yellow-50 text-yellow-700 rounded-lg">
-          <div>
-            <p>Cliente: {session.customer_details?.name}</p>
-            <p>Email: {session.customer_details?.email}</p>
-          </div>
-          {lineItems.data.map((item) => (
-            <div
-              key={item.id}
-              className="flex gap-1 justify-around border-dashed border-b-1"
-            >
-              <p>{item.description}</p>
-              <p>R${(item.amount_total! / 100).toFixed(2)}</p>
-              <p>x {item.quantity}</p>
-            </div>
-          ))}
-        </div>
+        <p>Você será redirecionado a página Order List</p>
       </div>
     </>
   );
